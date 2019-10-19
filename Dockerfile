@@ -18,7 +18,7 @@ COPY ./shadowsocks-libev /tmp/shadowsocks
 # e 脚本中的命令一旦运行失败就终止脚本的执行 x 用于显示出命令与其执行结果
 RUN set -ex \
   # set proxy in china
-  && echo -e "https://mirrors.aliyun.com/alpine/v3.10/main/\nhttps://mirrors.aliyun.com/alpine/v3.10/community/" > /etc/apk/repositories \
+  && echo -e "https://mirrors.aliyun.com/alpine/latest-stable/main/\nhttps://mirrors.aliyun.com/alpine/latest-stable/community/" > /etc/apk/repositories \
   # Build environment setup
   && apk update \
   && apk add --no-cache --virtual .build-deps \
