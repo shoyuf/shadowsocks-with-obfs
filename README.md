@@ -6,4 +6,4 @@
 
 - run image
 
-1. `docker run -d --network host shoyuf/shadowsocks-with-obfs` with args
+1. `docker run -d --network host shoyuf/shadowsocks-with-obfs`

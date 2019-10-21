@@ -1,0 +1,10 @@
+{
+  "server": "0.0.0.0",
+  "server_port": 1080,
+  "password": "CCCCCCCC",
+  "method": "chacha20-ietf-poly1305",
+  "timeout": 60,
+  "plugin": "obfs-server",
+  "fast_open": true,
+  "plugin_opts": "obfs=http"
+}
