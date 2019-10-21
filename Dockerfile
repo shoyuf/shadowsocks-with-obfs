@@ -5,14 +5,6 @@
 FROM alpine
 LABEL maintainer="shoyuf <shoyuf@shoyuf.top>"
 
-# shadowsocks-libev environment
-ENV SERVER_ADDR 0.0.0.0
-ENV SERVER_PORT 8388
-ENV PASSWORD=
-ENV METHOD      aes-256-gcm
-ENV TIMEOUT     300
-ENV DNS_ADDRS    8.8.8.8,8.8.4.4
-ENV ARGS=
 
 COPY ./shadowsocks-libev /tmp/shadowsocks
 # e 脚本中的命令一旦运行失败就终止脚本的执行 x 用于显示出命令与其执行结果
@@ -75,14 +67,4 @@ RUN set -ex \
 
 USER nobody
 
-CMD exec ss-server \
-  -s $SERVER_ADDR \
-  -p $SERVER_PORT \
-  -k ${PASSWORD:-$(hostname)} \
-  -m $METHOD \
-  -t $TIMEOUT \
-  -d $DNS_ADDRS \
-  -u \
-  --plugin obfs-server \
-  --plugin-opts "obfs=http" \
-  $ARGS
+CMD exec ss-server -c /etc/shadowsocks-libev/ss-config.json
