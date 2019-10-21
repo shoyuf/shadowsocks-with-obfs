@@ -65,6 +65,6 @@ RUN set -ex \
   && make install \
   && rm -rf /tmp/obfs
 
-USER nobody
+USER root
 
 CMD exec ss-server -c /etc/shadowsocks-libev/ss-config.json
