@@ -6,8 +6,9 @@
 
 - touch configuration file to `/config/ss-config.json`
 
-  SAMPLE:
+  SAMPLES:
 
+  for server:
 ```JSON
 {
   "server": "0.0.0.0",
@@ -21,7 +22,30 @@
 }
 ```
 
+  for client:
+```JSON
+{
+  "server": "example.com",
+  "server_port": 80,
+  "local_address": "0.0.0.0",
+  "local_port": 1080,
+  "password": "CCCCCCCC",
+  "method": "chacha20-ietf-poly1305",
+  "timeout": 60,
+  "plugin": "obfs-local",
+  "fast_open": true,
+  "plugin_opts": "obfs=http;obfs-host=example.com"
+}
+```
+
 - run image
 
 1. cd shadowsocks-with-obfs folder
-1. ``docker run -d --network host -v `pwd`/config:/etc/shadowsocks-libev shoyuf/shadowsocks-with-obfs``
+
+for server:
+
+2. ``docker run -d --restart always -p 80:80 -v `pwd`/config:/etc/shadowsocks-libev shoyuf/shadowsocks-with-obfs``
+
+for client:
+
+2. ``docker run -d --restart always -p 1080:1080 -v `pwd`/config:/etc/shadowsocks-libev -u root shoyuf/shadowsocks-with-obfs ss-local -c /etc/shadowsocks-libev/ss-config.json``
